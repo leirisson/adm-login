@@ -12,6 +12,13 @@ export default function Login() {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Validação simples
+    if (!email || !password) {
+      setError('Por favor, preencha todos os campos.')
+      return
+    }
+
     setError(null)
     setLoading(true)
 
@@ -31,7 +38,7 @@ export default function Login() {
 
   return (
     <div style={styles.container}>
-      {/* Logo ou título principal */}
+      {/* Logo */}
       <div style={styles.logo}>
         <h1 style={styles.logoText}>FutVôlei</h1>
         <p>Gerenciamento de Inscrições</p>
@@ -43,30 +50,32 @@ export default function Login() {
 
         {error && <div style={styles.error}>{error}</div>}
 
-        <div style={styles.inputGroup}>
+        {/* Campo de Email */}
+        <div style={styles.field}>
+          <label htmlFor="email" style={styles.label}>Email</label>
           <input
+            id="email"
             type="email"
-            placeholder=" "
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             style={styles.input}
             disabled={loading}
           />
-          <label style={styles.label}>Email</label>
         </div>
 
-        <div style={styles.inputGroup}>
+        {/* Campo de Senha */}
+        <div style={styles.field}>
+          <label htmlFor="password" style={styles.label}>Senha</label>
           <input
+            id="password"
             type="password"
-            placeholder=" "
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             style={styles.input}
             disabled={loading}
           />
-          <label style={styles.label}>Senha</label>
         </div>
 
         <button
@@ -127,9 +136,15 @@ const styles = {
     marginBottom: '24px',
     textAlign: 'center' as const,
   },
-  inputGroup: {
-    position: 'relative' as const,
-    margin: '20px 0' as const,
+  field: {
+    marginBottom: '20px',
+  },
+  label: {
+    display: 'block',
+    marginBottom: '8px',
+    fontSize: '15px',
+    color: '#333',
+    fontWeight: '500' as const,
   },
   input: {
     width: '100%',
@@ -138,23 +153,10 @@ const styles = {
     border: '2px solid #ddd',
     borderRadius: '10px',
     outline: 'none',
-    transition: 'border-color 0.3s',
-    boxSizing: 'border-box' as const,
     backgroundColor: '#fafafa',
+    boxSizing: 'border-box' as const,
+    transition: 'border-color 0.3s',
   },
-  label: {
-    position: 'absolute' as const,
-    left: '14px',
-    top: '14px',
-    color: '#888',
-    fontSize: '16px',
-    transition: 'all 0.2s ease',
-    pointerEvents: 'none' as const,
-    backgroundColor: '#fff',
-    padding: '0 4px',
-  },
-  // Simulando o efeito de "floating label" com CSS inline (limitado)
-  // Para efeito completo, use CSS real ou classes
   inputFocus: {
     borderColor: '#1a73e8',
   },
@@ -179,9 +181,6 @@ const styles = {
     cursor: 'pointer',
     marginTop: '10px',
     transition: 'background-color 0.3s',
-  },
-  buttonHover: {
-    backgroundColor: '#333',
   },
   footer: {
     marginTop: '20px',

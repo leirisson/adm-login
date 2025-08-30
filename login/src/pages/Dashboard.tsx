@@ -24,7 +24,6 @@ export default function Dashboard() {
     setLoading(false)
   }
 
-  console.log(inscricoes)
 
   const handleLogout = async () => {
     await signOut()
@@ -54,12 +53,12 @@ export default function Dashboard() {
 
     {/* Carregando ou Cards */}
     {loading ? (
-      <p>Carregando suas inscrições...</p>
+      <p>Carregando  inscrições...</p>
     ) : inscricoes.length === 0 ? (
       <p>Você ainda não tem inscrições.</p>
     ) : (
       <div>
-        <h3 style={styles.sectionTitle}>Suas Inscrições</h3>
+        <h3 style={styles.sectionTitle}>Inscrições</h3>
         <div style={styles.cardsContainer}>
           {inscricoes.map((inscricao) => (
             <InscricaoCard key={inscricao.id} inscricao={inscricao} />

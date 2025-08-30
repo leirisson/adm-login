@@ -21,7 +21,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <div style={{ padding: 20 }}>
-          <h1>Meu Sistema de Login</h1>
+   
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />

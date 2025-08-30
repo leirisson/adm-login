@@ -2,7 +2,7 @@ import { supabase } from "./client"
 
 
 // Função de busca permanece a mesma
-export async function buscarpostagens() {
+export async function buscarInscricoes() {
     return await supabase.from("inscricoes")
         .select("*")
         .then(({ data, error }) => {
